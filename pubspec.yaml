@@ -1,0 +1,57 @@
+name: jogo_da_velha
+description: "Jogo da Velha - Tic Tac Toe Game"
+publish_to: 'none'
+version: 2.0.0+2
+
+environment:
+  sdk: ^3.10.7
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/icon.png"
+  web:
+    generate: true
+    image_path: "assets/icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icon.png"
+
+  min_sdk_android: 21
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management
+  provider: ^6.1.2
+
+  # Storage
+  shared_preferences: ^2.3.4
+
+  # Ads
+  google_mobile_ads: ^5.2.0
+
+  # In-App Purchase
+  in_app_purchase: ^3.2.0
+
+  # Audio
+  audioplayers: ^6.1.0
+
+  # Utils
+  intl: ^0.20.2
+  cupertino_icons: ^1.0.8
+  flutter_launcher_icons: ^0.14.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/sounds/
+    - assets/icon.png
+
