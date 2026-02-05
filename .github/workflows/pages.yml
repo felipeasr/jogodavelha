@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'public/**'
+      - '.github/workflows/**'
 
   workflow_dispatch:
 
@@ -29,11 +30,13 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'public'
+          path: public
 
       - name: Deploy to GitHub Pages
         id: deployment
