@@ -49,7 +49,16 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
   Widget build(BuildContext context) {
     final storageService = context.watch<StorageService>();
 
-    if (kIsWeb || storageService.adsRemoved || !_isLoaded || _bannerAd == null) {
+    if (storageService.adsRemoved) {
+      return const SizedBox.shrink();
+    }
+
+    // Na web, reserva espaco para o banner AdSense fixo no HTML
+    if (kIsWeb) {
+      return const SizedBox(height: 60);
+    }
+
+    if (!_isLoaded || _bannerAd == null) {
       return const SizedBox.shrink();
     }
 

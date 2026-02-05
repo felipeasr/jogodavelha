@@ -18,21 +18,64 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jogo da Velha - Tic Tac Toe">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="jogo_da_velha">
+  <meta name="apple-mobile-web-app-title" content="Jogo da Velha">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>jogo_da_velha</title>
+  <title>Jogo da Velha</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8339984431072471"
+    crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #E0DEE8;
+    }
+
+    /* AdSense banner fixo no rodape */
+    #adsense-bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+      text-align: center;
+      background: #fff;
+      padding: 4px 0;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    }
+
+    #adsense-bottom ins {
+      display: block;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
+
+  <!-- AdSense Banner Bottom -->
+  <div id="adsense-bottom">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-8339984431072471"
+      data-ad-slot="4155191094"
+      data-ad-format="horizontal"
+      data-full-width-responsive="false"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 </body>
 </html>
