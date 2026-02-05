@@ -1,45 +1,180 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo da Velha - Tic Tac Toe</title>
+    <meta name="description" content="Jogo da Velha / Tic Tac Toe. Baixe no Google Play." />
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
+            padding: 24px;
         }
+
         .container {
             text-align: center;
-            padding: 40px;
-            max-width: 500px;
+            padding: 40px 28px;
+            max-width: 560px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
         }
-        h1 { font-size: 2.5rem; margin-bottom: 16px; }
-        p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 32px; line-height: 1.6; }
+
+        .lang-toggle {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            display: inline-flex;
+            gap: 8px;
+        }
+
+        .lang-toggle button {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #fff;
+            padding: 8px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform .05s ease;
+        }
+
+        .lang-toggle button:active {
+            transform: scale(0.98);
+        }
+
+        .lang-toggle button.active {
+            background: rgba(255, 255, 255, 0.26);
+            border-color: rgba(255, 255, 255, 0.35);
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            margin-bottom: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            opacity: 0.92;
+            margin-bottom: 22px;
+            line-height: 1.6;
+        }
+
         .badge {
             display: inline-block;
-            margin-top: 16px;
+            margin-top: 8px;
         }
+
         .badge img {
             height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .note {
+            margin-top: 14px;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Jogo da Velha</h1>
-        <p>O classico jogo da velha com modos de dificuldade, multiplayer local e muito mais!</p>
-        <div class="badge">
-            <a href="https://play.google.com/store/apps/details?id=com.felipedev.jogodavelha">
-                <img alt="Disponivel no Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/pt-br_badge_web_generic.png" height="60">
-            </a>
+    <main class="container">
+        <div class="lang-toggle" aria-label="Language switcher">
+            <button id="btn-pt" type="button">PT</button>
+            <button id="btn-en" type="button">EN</button>
         </div>
-    </div>
+
+        <!-- Português -->
+        <section id="pt">
+            <h1>Jogo da Velha</h1>
+            <p>O clássico Jogo da Velha com modos de dificuldade, multiplayer local e muito mais!</p>
+
+            <div class="badge">
+                <a href="https://play.google.com/store/apps/details?id=com.felipedev.jogodavelha" target="_blank"
+                    rel="noopener noreferrer" aria-label="Abrir no Google Play">
+                    <img alt="Disponível no Google Play"
+                        src="https://play.google.com/intl/en_us/badges/static/images/badges/pt-br_badge_web_generic.png" />
+                </a>
+            </div>
+
+            <div class="note">Baixe agora no Google Play</div>
+        </section>
+
+        <!-- English -->
+        <section id="en" class="hidden">
+            <h1>Tic Tac Toe</h1>
+            <p>Classic Tic Tac Toe with difficulty modes, local multiplayer, and more!</p>
+
+            <div class="badge">
+                <a href="https://play.google.com/store/apps/details?id=com.felipedev.jogodavelha" target="_blank"
+                    rel="noopener noreferrer" aria-label="Open on Google Play">
+                    <img alt="Get it on Google Play"
+                        src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" />
+                </a>
+            </div>
+
+            <div class="note">Download now on Google Play</div>
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            const ptSection = document.getElementById("pt");
+            const enSection = document.getElementById("en");
+            const btnPt = document.getElementById("btn-pt");
+            const btnEn = document.getElementById("btn-en");
+
+            function setLang(lang) {
+                const isPt = lang === "pt";
+                ptSection.classList.toggle("hidden", !isPt);
+                enSection.classList.toggle("hidden", isPt);
+
+                btnPt.classList.toggle("active", isPt);
+                btnEn.classList.toggle("active", !isPt);
+
+                document.documentElement.lang = isPt ? "pt-BR" : "en";
+                localStorage.setItem("site_lang", isPt ? "pt" : "en");
+            }
+
+            btnPt.addEventListener("click", () => setLang("pt"));
+            btnEn.addEventListener("click", () => setLang("en"));
+
+            const saved = localStorage.getItem("site_lang");
+            if (saved === "pt" || saved === "en") {
+                setLang(saved);
+            } else {
+                const nav = (navigator.language || "").toLowerCase();
+                setLang(nav.startsWith("pt") ? "pt" : "en");
+            }
+        })();
+    </script>
 </body>
+
 </html>
